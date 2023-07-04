@@ -3,6 +3,7 @@ package api.tests;
 import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.containsString;
 
 public class LoginTest {
 
@@ -15,7 +16,9 @@ public class LoginTest {
         queryParams.put("grant_type","password");
         queryParams.put("username","");
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
-                .then().log().status().log().body();
+                .then().assertThat().statusCode(400).
+                assertThat().body(containsString("invalid_grant")).
+                assertThat().body(containsString("Bad credentials"));
     }
 
     @Test
@@ -27,7 +30,9 @@ public class LoginTest {
         queryParams.put("grant_type","password");
         queryParams.put("password","");
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
-                .then().log().status().log().body();
+                .then().assertThat().statusCode(400).
+                assertThat().body(containsString("invalid_grant")).
+                assertThat().body(containsString("Bad credentials"));
     }
 
     @Test
@@ -40,7 +45,9 @@ public class LoginTest {
         queryParams.put("username","");
         queryParams.put("password","");
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
-                .then().log().status().log().body();
+                .then().assertThat().statusCode(400).
+                assertThat().body(containsString("invalid_grant")).
+                assertThat().body(containsString("Bad credentials"));
     }
 
     @Test
@@ -53,7 +60,9 @@ public class LoginTest {
         queryParams.put("username","");
         queryParams.put("password","12345");
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
-                .then().log().status().log().body();
+                .then().assertThat().statusCode(400).
+                assertThat().body(containsString("invalid_grant")).
+                assertThat().body(containsString("Bad credentials"));
     }
 
     @Test
@@ -66,7 +75,9 @@ public class LoginTest {
         queryParams.put("username","o.test@gmail.com");
         queryParams.put("password","");
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
-                .then().log().status().log().body();
+                .then().assertThat().statusCode(400).
+                assertThat().body(containsString("invalid_grant")).
+                assertThat().body(containsString("Bad credentials"));
     }
 
     @Test
@@ -79,7 +90,9 @@ public class LoginTest {
         queryParams.put("username","o.test@gmail.com");
         queryParams.put("password","Pwd1122334455");
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
-                .then().log().status().log().body();
+                .then().assertThat().statusCode(400).
+                assertThat().body(containsString("invalid_grant")).
+                assertThat().body(containsString("Bad credentials"));
     }
 
     @Test
@@ -92,7 +105,9 @@ public class LoginTest {
         queryParams.put("username","olagasich@gmail.com");
         queryParams.put("password","");
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
-                .then().log().status().log().body();
+                .then().assertThat().statusCode(400).
+                assertThat().body(containsString("invalid_grant")).
+                assertThat().body(containsString("Bad credentials"));
     }
 
     @Test
@@ -105,6 +120,8 @@ public class LoginTest {
         queryParams.put("username","olagasich@gmail.com");
         queryParams.put("password","Pwd1122334455");
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
-                .then().log().status().log().body();
+                .then().assertThat().statusCode(200).
+                assertThat().body(containsString("access_token")).
+                assertThat().body(containsString("refresh_token"));
     }
 }
