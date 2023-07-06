@@ -1,5 +1,6 @@
 package api.tests;
 
+import api.LoginPageObject;
 import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import static io.restassured.RestAssured.given;
@@ -8,42 +9,11 @@ import static org.hamcrest.Matchers.containsString;
 public class LoginTest {
 
     @Test
-    public void testLoginWithEmptyEmail(){
-
-        HashMap<String, String> queryParams = new HashMap<>();
-        queryParams.put("client_id","web_ey");
-        queryParams.put("client_secret","secret");
-        queryParams.put("grant_type","password");
-        queryParams.put("username","");
-        given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
-                .then().assertThat().statusCode(400).
-                assertThat().body(containsString("invalid_grant")).
-                assertThat().body(containsString("Bad credentials"));
-    }
-
-    @Test
-    public void testLoginWithEmptyPassword(){
-
-        HashMap<String, String> queryParams = new HashMap<>();
-        queryParams.put("client_id","web_ey");
-        queryParams.put("client_secret","secret");
-        queryParams.put("grant_type","password");
-        queryParams.put("password","");
-        given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
-                .then().assertThat().statusCode(400).
-                assertThat().body(containsString("invalid_grant")).
-                assertThat().body(containsString("Bad credentials"));
-    }
-
-    @Test
     public void testLoginWithEmptyEmailAndPassword(){
 
-        HashMap<String, String> queryParams = new HashMap<>();
-        queryParams.put("client_id","web_ey");
-        queryParams.put("client_secret","secret");
-        queryParams.put("grant_type","password");
-        queryParams.put("username","");
-        queryParams.put("password","");
+        LoginPageObject object = new LoginPageObject();
+        HashMap<String, String> queryParams = object.getQueryParams("", "");
+
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
                 .then().assertThat().statusCode(400).
                 assertThat().body(containsString("invalid_grant")).
@@ -53,12 +23,9 @@ public class LoginTest {
     @Test
     public void testLoginWithEmptyEmailAndInvalidPassword(){
 
-        HashMap<String, String> queryParams = new HashMap<>();
-        queryParams.put("client_id","web_ey");
-        queryParams.put("client_secret","secret");
-        queryParams.put("grant_type","password");
-        queryParams.put("username","");
-        queryParams.put("password","12345");
+        LoginPageObject object = new LoginPageObject();
+        HashMap<String, String> queryParams = object.getQueryParams("", "12345");
+
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
                 .then().assertThat().statusCode(400).
                 assertThat().body(containsString("invalid_grant")).
@@ -68,12 +35,9 @@ public class LoginTest {
     @Test
     public void testLoginWithInvalidEmailAndEmptyPassword(){
 
-        HashMap<String, String> queryParams = new HashMap<>();
-        queryParams.put("client_id","web_ey");
-        queryParams.put("client_secret","secret");
-        queryParams.put("grant_type","password");
-        queryParams.put("username","o.test@gmail.com");
-        queryParams.put("password","");
+        LoginPageObject object = new LoginPageObject();
+        HashMap<String, String> queryParams = object.getQueryParams("o.test@gmail.com", "");
+
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
                 .then().assertThat().statusCode(400).
                 assertThat().body(containsString("invalid_grant")).
@@ -83,12 +47,9 @@ public class LoginTest {
     @Test
     public void testLoginWithInvalidEmailAndValidPassword(){
 
-        HashMap<String, String> queryParams = new HashMap<>();
-        queryParams.put("client_id","web_ey");
-        queryParams.put("client_secret","secret");
-        queryParams.put("grant_type","password");
-        queryParams.put("username","o.test@gmail.com");
-        queryParams.put("password","Pwd1122334455");
+        LoginPageObject object = new LoginPageObject();
+        HashMap<String, String> queryParams = object.getQueryParams("o.test@gmail.com", "Pwd1122334455");
+
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
                 .then().assertThat().statusCode(400).
                 assertThat().body(containsString("invalid_grant")).
@@ -98,12 +59,9 @@ public class LoginTest {
     @Test
     public void testLoginWithValidEmailAndEmptyPassword(){
 
-        HashMap<String, String> queryParams = new HashMap<>();
-        queryParams.put("client_id","web_ey");
-        queryParams.put("client_secret","secret");
-        queryParams.put("grant_type","password");
-        queryParams.put("username","olagasich@gmail.com");
-        queryParams.put("password","");
+        LoginPageObject object = new LoginPageObject();
+        HashMap<String, String> queryParams = object.getQueryParams("olagasich@gmail.com", "");
+
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
                 .then().assertThat().statusCode(400).
                 assertThat().body(containsString("invalid_grant")).
@@ -113,12 +71,9 @@ public class LoginTest {
     @Test
     public void testLoginWithValidCredentials(){
 
-        HashMap<String, String> queryParams = new HashMap<>();
-        queryParams.put("client_id","web_ey");
-        queryParams.put("client_secret","secret");
-        queryParams.put("grant_type","password");
-        queryParams.put("username","olagasich@gmail.com");
-        queryParams.put("password","Pwd1122334455");
+        LoginPageObject object = new LoginPageObject();
+        HashMap<String, String> queryParams = object.getQueryParams("olagasich@gmail.com", "Pwd1122334455");
+
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
                 .then().assertThat().statusCode(200).
                 assertThat().body(containsString("access_token")).

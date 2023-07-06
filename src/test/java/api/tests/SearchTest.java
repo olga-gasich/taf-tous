@@ -1,5 +1,6 @@
 package api.tests;
 
+import api.SearchPageObject;
 import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import static io.restassured.RestAssured.given;
@@ -10,15 +11,9 @@ public class SearchTest {
     @Test
     public void testSearchForRings(){
 
-        HashMap<String, String> queryParams = new HashMap<>();
-        queryParams.put("scope","desktop");
-        queryParams.put("lang","es");
-        queryParams.put("store","es");
-        queryParams.put("session","493f2f2b-db18-4844-b9a0-fc66239221a7");
-        queryParams.put("rows","24");
-        queryParams.put("start","0");
-        queryParams.put("origin","default");
-        queryParams.put("q","anillos");
+        SearchPageObject object = new SearchPageObject();
+        HashMap<String, String> queryParams = object.getQueryParams("anillos");
+
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
                 .then().assertThat().statusCode(200).
                 assertThat().body(containsString("Anillo"));
@@ -27,15 +22,9 @@ public class SearchTest {
     @Test
     public void testSearchForRingsAndBracelets(){
 
-        HashMap<String, String> queryParams = new HashMap<>();
-        queryParams.put("scope","desktop");
-        queryParams.put("lang","es");
-        queryParams.put("store","es");
-        queryParams.put("session","493f2f2b-db18-4844-b9a0-fc66239221a7");
-        queryParams.put("rows","24");
-        queryParams.put("start","0");
-        queryParams.put("origin","default");
-        queryParams.put("q","anillos+y+pulseras");
+        SearchPageObject object = new SearchPageObject();
+        HashMap<String, String> queryParams = object.getQueryParams("anillos+y+pulseras");
+
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
                 .then().assertThat().statusCode(200).
                 assertThat().body(containsString("Pulsera"));
@@ -44,32 +33,21 @@ public class SearchTest {
     @Test
     public void testSearchForSpecificBag(){
 
-        HashMap<String, String> queryParams = new HashMap<>();
-        queryParams.put("scope","desktop");
-        queryParams.put("lang","es");
-        queryParams.put("store","es");
-        queryParams.put("session","493f2f2b-db18-4844-b9a0-fc66239221a7");
-        queryParams.put("rows","24");
-        queryParams.put("start","0");
-        queryParams.put("origin","default");
-        queryParams.put("q","Saca+mediana+blanco+y+negro");
+        SearchPageObject object = new SearchPageObject();
+        HashMap<String, String> queryParams = object.getQueryParams("Saca+mediana+blanco+y+negro");
+
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
                 .then().assertThat().statusCode(200).
-                assertThat().body(containsString("Saca mediana blanco y negro"));
+                assertThat().body("content.docs[0].name",equalTo("Saca mediana blanco y negro TOUS Cloud Soft")).
+                assertThat().body("content.numFound",equalTo(1));
     }
 
     @Test
     public void testSearchForInvalidData(){
 
-        HashMap<String, String> queryParams = new HashMap<>();
-        queryParams.put("scope","desktop");
-        queryParams.put("lang","es");
-        queryParams.put("store","es");
-        queryParams.put("session","493f2f2b-db18-4844-b9a0-fc66239221a7");
-        queryParams.put("rows","24");
-        queryParams.put("start","0");
-        queryParams.put("origin","default");
-        queryParams.put("q","1q@#$%^&*()_+=");
+        SearchPageObject object = new SearchPageObject();
+        HashMap<String, String> queryParams = object.getQueryParams("1q@#$%^&*()_+=");
+
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
                 .then().assertThat().statusCode(200).
                 assertThat().body(not(containsString("1q@#$%^&*()_+=")));
@@ -78,34 +56,28 @@ public class SearchTest {
     @Test
     public void testSearchForNotExistingItem(){
 
-        HashMap<String, String> queryParams = new HashMap<>();
-        queryParams.put("scope","desktop");
-        queryParams.put("lang","es");
-        queryParams.put("store","es");
-        queryParams.put("session","493f2f2b-db18-4844-b9a0-fc66239221a7");
-        queryParams.put("rows","24");
-        queryParams.put("start","0");
-        queryParams.put("origin","default");
-        queryParams.put("q","sofa Ikea");
+        SearchPageObject object = new SearchPageObject();
+        HashMap<String, String> queryParams = object.getQueryParams("sofa Ikea");
+
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
                 .then().assertThat().statusCode(200).
-                assertThat().body(not(containsString("sofa Ikea")));
+                assertThat().body(not(containsString("sofa Ikea"))).
+                assertThat().body("content.numFound",equalTo(0));
     }
 
     @Test
     public void testSearchWithEmptyData(){
 
-        HashMap<String, String> queryParams = new HashMap<>();
-        queryParams.put("scope","desktop");
-        queryParams.put("lang","es");
-        queryParams.put("store","es");
-        queryParams.put("session","493f2f2b-db18-4844-b9a0-fc66239221a7");
-        queryParams.put("rows","24");
-        queryParams.put("start","0");
-        queryParams.put("origin","default");
-        queryParams.put("q","");
+        SearchPageObject object = new SearchPageObject();
+        HashMap<String, String> queryParams = object.getQueryParams("");
+
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
                 .then().assertThat().statusCode(400).
                 assertThat().body(containsString("q is mandatory"));
     }
 }
+
+
+
+
+
