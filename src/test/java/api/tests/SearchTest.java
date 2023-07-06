@@ -76,8 +76,3 @@ public class SearchTest {
                 assertThat().body(containsString("q is mandatory"));
     }
 }
-
-
-
-
-
