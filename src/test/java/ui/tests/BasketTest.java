@@ -28,7 +28,6 @@ public class BasketTest {
         page.openBaseURL();
     }
 
-
     @Test
     public void testPutInBasketFoundItem() {
 
