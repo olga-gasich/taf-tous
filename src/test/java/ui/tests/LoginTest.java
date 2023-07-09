@@ -37,14 +37,14 @@ public class LoginTest {
     }
 
     @Test
-    public void testFillFormWithInvalidEmail() {
+    public void testFillFormWithInvalidEmailAndEmptyPassword() {
 
         step.fillLoginFormAndSubmit(Util.generateFakePassword(),"");
         Assertions.assertEquals("El campo Email debe ser un correo electrónico válido", page.getInvalidEmailError());
     }
 
     @Test
-    public void testFillFormWithEmptyEmailAndSomePassword() {
+    public void testFillFormWithEmptyEmailAndInvalidPassword() {
 
         step.fillLoginFormAndSubmit("",Util.generateFakePassword());
         Assertions.assertEquals("El campo Email es obligatorio", page.getEmptyEmailError());
