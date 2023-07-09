@@ -33,7 +33,7 @@ public class BasketStep {
         page.getFoundEarrings();
     }
 
-    public void putInBasket(){
+    public void addToBasket(){
 
         page = new BasketPage(driver);
         page.clickFoundEarrings();

@@ -35,7 +35,7 @@ public class BasketTest {
         Assertions.assertEquals("Hola Olga,", page.getWelcomeMessage());
         step.fillSearchField("Pendientes botón de plata Bear");
         Assertions.assertEquals("Pendientes botón de plata TOUS Bear", page.getFoundEarrings());
-        step.putInBasket();
+        step.addToBasket();
         Assertions.assertEquals("8", page.getPreviousCounter());
     }
 
