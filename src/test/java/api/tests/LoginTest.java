@@ -1,6 +1,6 @@
 package api.tests;
 
-import api.LoginPageObject;
+import api.LoginPage;
 import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import static io.restassured.RestAssured.given;
@@ -11,7 +11,7 @@ public class LoginTest {
     @Test
     public void testLoginWithEmptyEmailAndPassword(){
 
-        LoginPageObject object = new LoginPageObject();
+        LoginPage object = new LoginPage();
         HashMap<String, String> queryParams = object.getQueryParams("", "");
 
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
@@ -23,7 +23,7 @@ public class LoginTest {
     @Test
     public void testLoginWithEmptyEmailAndInvalidPassword(){
 
-        LoginPageObject object = new LoginPageObject();
+        LoginPage object = new LoginPage();
         HashMap<String, String> queryParams = object.getQueryParams("", "12345");
 
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
@@ -35,7 +35,7 @@ public class LoginTest {
     @Test
     public void testLoginWithInvalidEmailAndEmptyPassword(){
 
-        LoginPageObject object = new LoginPageObject();
+        LoginPage object = new LoginPage();
         HashMap<String, String> queryParams = object.getQueryParams("o.test@gmail.com", "");
 
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
@@ -47,7 +47,7 @@ public class LoginTest {
     @Test
     public void testLoginWithInvalidEmailAndValidPassword(){
 
-        LoginPageObject object = new LoginPageObject();
+        LoginPage object = new LoginPage();
         HashMap<String, String> queryParams = object.getQueryParams("o.test@gmail.com", "Pwd1122334455");
 
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
@@ -59,7 +59,7 @@ public class LoginTest {
     @Test
     public void testLoginWithValidEmailAndEmptyPassword(){
 
-        LoginPageObject object = new LoginPageObject();
+        LoginPage object = new LoginPage();
         HashMap<String, String> queryParams = object.getQueryParams("olagasich@gmail.com", "");
 
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")
@@ -71,7 +71,7 @@ public class LoginTest {
     @Test
     public void testLoginWithValidCredentials(){
 
-        LoginPageObject object = new LoginPageObject();
+        LoginPage object = new LoginPage();
         HashMap<String, String> queryParams = object.getQueryParams("olagasich@gmail.com", "Pwd1122334455");
 
         given().when().queryParams(queryParams).post("https://www.tous.com/authorizationserver/oauth/token")

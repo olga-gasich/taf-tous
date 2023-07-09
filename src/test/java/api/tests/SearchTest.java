@@ -1,6 +1,6 @@
 package api.tests;
 
-import api.SearchPageObject;
+import api.SearchPage;
 import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import static io.restassured.RestAssured.given;
@@ -11,7 +11,7 @@ public class SearchTest {
     @Test
     public void testSearchForRings(){
 
-        SearchPageObject object = new SearchPageObject();
+        SearchPage object = new SearchPage();
         HashMap<String, String> queryParams = object.getQueryParams("anillos");
 
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
@@ -22,7 +22,7 @@ public class SearchTest {
     @Test
     public void testSearchForRingsAndBracelets(){
 
-        SearchPageObject object = new SearchPageObject();
+        SearchPage object = new SearchPage();
         HashMap<String, String> queryParams = object.getQueryParams("anillos+y+pulseras");
 
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
@@ -33,7 +33,7 @@ public class SearchTest {
     @Test
     public void testSearchForSpecificBag(){
 
-        SearchPageObject object = new SearchPageObject();
+        SearchPage object = new SearchPage();
         HashMap<String, String> queryParams = object.getQueryParams("Saca+mediana+blanco+y+negro");
 
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
@@ -45,7 +45,7 @@ public class SearchTest {
     @Test
     public void testSearchForInvalidData(){
 
-        SearchPageObject object = new SearchPageObject();
+        SearchPage object = new SearchPage();
         HashMap<String, String> queryParams = object.getQueryParams("1q@#$%^&*()_+=");
 
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
@@ -56,7 +56,7 @@ public class SearchTest {
     @Test
     public void testSearchForNotExistingItem(){
 
-        SearchPageObject object = new SearchPageObject();
+        SearchPage object = new SearchPage();
         HashMap<String, String> queryParams = object.getQueryParams("sofa Ikea");
 
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
@@ -68,7 +68,7 @@ public class SearchTest {
     @Test
     public void testSearchWithEmptyData(){
 
-        SearchPageObject object = new SearchPageObject();
+        SearchPage object = new SearchPage();
         HashMap<String, String> queryParams = object.getQueryParams("");
 
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")

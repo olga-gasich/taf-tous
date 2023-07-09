@@ -2,7 +2,7 @@ package api;
 
 import java.util.HashMap;
 
-public class LoginPageObject {
+public class LoginPage {
 
     public HashMap<String, String> getQueryParams(String username, String password){
 

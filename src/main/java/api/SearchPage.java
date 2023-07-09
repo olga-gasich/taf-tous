@@ -2,7 +2,7 @@ package api;
 
 import java.util.HashMap;
 
-public class SearchPageObject {
+public class SearchPage {
 
     public HashMap<String, String> getQueryParams(String query){
 
