@@ -29,7 +29,7 @@ public class BasketTest {
     }
 
     @Test
-    public void testPutInBasketFoundItem() {
+    public void testAddFoundItemToBasket() {
 
         step.fillLoginFormAndSubmit(Util.getValidEmail(),Util.getValidPassword());
         Assertions.assertEquals("Hola Olga,", page.getWelcomeMessage());
