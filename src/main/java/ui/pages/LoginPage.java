@@ -83,13 +83,14 @@ public class LoginPage {
 
     public String getPwdError(){
 
-        WebElement actPwdError = driver.findElement(By.xpath(pwdErrorLocator));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement actPwdError = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(pwdErrorLocator)));
         String actPwdErrorMessage = actPwdError.getText();
         return actPwdErrorMessage;
     }
 
     public String getWelcomeMessage(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement actWelcomeMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(welcomeMessageLocator)));
         String actWelcomeMessageText = actWelcomeMessage.getText();
         return actWelcomeMessageText;
