@@ -36,7 +36,7 @@ public class BasketTest {
         step.fillSearchField("Pendientes botón de plata Bear");
         Assertions.assertEquals("Pendientes botón de plata TOUS Bear", page.getFoundEarrings());
         step.addToBasket();
-        Assertions.assertEquals("8", page.getPreviousCounter());
+        Assertions.assertEquals("1", page.getNewAddedItemCount());
     }
 
     @AfterEach

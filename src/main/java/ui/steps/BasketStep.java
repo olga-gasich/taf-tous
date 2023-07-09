@@ -38,6 +38,6 @@ public class BasketStep {
         page = new BasketPage(driver);
         page.clickFoundEarrings();
         page.clickAddToBasketBtn();
-        page.getPreviousCounter();
+        page.getNewAddedItemCount();
     }
 }

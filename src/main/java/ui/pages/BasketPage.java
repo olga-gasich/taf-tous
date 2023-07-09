@@ -113,7 +113,7 @@ public class BasketPage {
         addToBasketBtn.click();
     }
 
-    public String getPreviousCounter(){
+    public String getNewAddedItemCount(){
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement actWelcomeMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(counterLocator)));
