@@ -90,6 +90,7 @@ public class LoginPage {
     }
 
     public String getWelcomeMessage(){
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement actWelcomeMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(welcomeMessageLocator)));
         String actWelcomeMessageText = actWelcomeMessage.getText();
