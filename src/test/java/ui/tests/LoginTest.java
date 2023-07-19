@@ -1,33 +1,10 @@
 package ui.tests;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import ui.pages.LoginPage;
-import ui.steps.LoginStep;
 import utils.Util;
 
-
-public class LoginTest {
-
-    ChromeDriver driver;
-    LoginPage page;
-    LoginStep step;
-
-    @BeforeEach
-    public void warmUp() {
-
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(chromeOptions);
-        driver.manage().window().maximize();
-        step = new LoginStep(driver);
-        page = new LoginPage(driver);
-        page.openBaseURL();
-    }
+public class LoginTest extends BaseLoginTest {
 
     @Test
     public void testFillFormWithEmptyEmailAndPassword() {
@@ -69,10 +46,5 @@ public class LoginTest {
 
         step.fillLoginFormAndSubmit(Util.getValidEmail(),Util.getValidPassword());
         Assertions.assertEquals("Hola Olga,", page.getWelcomeMessage());
-    }
-
-    @AfterEach
-    public void tearDown() {
-    driver.quit();
     }
 }

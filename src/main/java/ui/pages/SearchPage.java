@@ -1,15 +1,16 @@
 package ui.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ui.driver.DriverSingleton;
 import java.time.Duration;
 
 public class SearchPage {
 
-    private ChromeDriver driver;
+    private WebDriver driver;
     private String searchIconLocator = "//*[@id='js-site-search-input']/div";
     private String searchInputLocator = "//div/input[@aria-label='Caja de búsqueda']";
     private String ringItemLocator = "//*[@id='ebx-grid']/article[1]/a/h1";
@@ -17,11 +18,12 @@ public class SearchPage {
     private String bagItemLocator = "//*[@id='ebx-grid']/article/a/h1";
     private String noFoundResultMessageLocator = "//span[@class='ebx-no-results__message-try-again'and text()='. Por favor, prueba de nuevo con otras palabras.']";
     private String acceptCookieBtnLocator = "//*[@id='cookie-disclaimer']/div/div[1]/div[3]/div/button/div[2]/span";
+    private String promotionCloseBtnLocator = "//*[@id='newsletter-modal___BV_modal_body_']/div/div[1]/button/div[2]/div";
     private String baseURL = "https://www.tous.com/es-es/register";
 
-    public SearchPage (ChromeDriver driver){
+    public SearchPage (){
 
-        this.driver = driver;
+        this.driver = DriverSingleton.getDriver();
     }
 
     public void openBaseURL() {
@@ -34,6 +36,13 @@ public class SearchPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement acceptCookieBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(acceptCookieBtnLocator)));
         acceptCookieBtn.click();
+    }
+
+    public void clickPromotionCloseBtn(){
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement promotionCloseBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(promotionCloseBtnLocator)));
+        promotionCloseBtn.click();
     }
 
     public SearchPage clickSearchIcon(){

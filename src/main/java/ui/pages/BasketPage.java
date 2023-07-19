@@ -1,15 +1,16 @@
 package ui.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ui.driver.DriverSingleton;
 import java.time.Duration;
 
 public class BasketPage {
 
-    private ChromeDriver driver;
+    private WebDriver driver;
     private String emailInputLocator = "//*[@id='email-input']";
     private String pwdInputLocator = "//*[@id='password-input']";
     private String rememberPwdCheckboxLocator = "//*[@id='checkbox-inputgroup']/div/div/label";
@@ -18,14 +19,15 @@ public class BasketPage {
     private String searchInputLocator = "//div/input[@aria-label='Caja de búsqueda']";
     private String earringsItemLocator = "//*[@id='ebx-grid']/article[1]/a/h1";
     private String addToBasketBtnLocator = "//*[@id='product-images']/div[2]/div/div[1]/div[3]/div[1]/div/button";
-    private String counterLocator = "//*[@id='__layout']/div/div[2]/div[2]/div/header/div/div[2]/a[2]/span[1]";
+    private String PopUpBtnLocator = "//*[@id='toastAddProduct']/div/div/div[4]/div/a/div[2]";
+    private String itemAddedToBasketLocator = "//a[@class='link product-name-link']";
     private String acceptCookieBtnLocator = "//*[@id='cookie-disclaimer']/div/div[1]/div[3]/div/button/div[2]/span";
-    private String welcomeMessageLocator = "//*[@id='__layout']/div/div[3]/div[1]/div/h2/span[1]";
+    private String promotionCloseBtnLocator = "//*[@id='newsletter-modal___BV_modal_body_']/div/div[1]/button/div[2]/div";
     private String baseURL = "https://www.tous.com/es-es/register";
 
-    public BasketPage (ChromeDriver driver){
+    public BasketPage (){
 
-        this.driver = driver;
+        this.driver = DriverSingleton.getDriver();
     }
 
     public void openBaseURL() {
@@ -38,6 +40,13 @@ public class BasketPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement acceptCookieBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(acceptCookieBtnLocator)));
         acceptCookieBtn.click();
+    }
+
+    public void clickPromotionCloseBtn(){
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement promotionCloseBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(promotionCloseBtnLocator)));
+        promotionCloseBtn.click();
     }
 
     public BasketPage fillEmailInput(String str){
@@ -66,14 +75,6 @@ public class BasketPage {
         WebElement submitBtn = driver.findElement(By.xpath(submitBtnLocator));
         submitBtn.click();
         return this;
-    }
-
-    public String getWelcomeMessage(){
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement actWelcomeMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(welcomeMessageLocator)));
-        String actWelcomeMessageText = actWelcomeMessage.getText();
-        return actWelcomeMessageText;
     }
 
     public BasketPage clickSearchIcon(){
@@ -108,16 +109,23 @@ public class BasketPage {
 
     public void clickAddToBasketBtn(){
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         WebElement addToBasketBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(addToBasketBtnLocator)));
         addToBasketBtn.click();
     }
 
-    public String getNewAddedItemCount(){
+    public void clickPopUpBtn(){
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement actWelcomeMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(counterLocator)));
-        String actWelcomeMessageText = actWelcomeMessage.getText();
-        return actWelcomeMessageText;
+        WebElement PopUpBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PopUpBtnLocator)));
+        PopUpBtn.click();
+    }
+
+    public String getItemAddedToBasket(){
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement actItemAddedToBasket = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(itemAddedToBasketLocator)));
+        String actItemAddedToBasketText = actItemAddedToBasket.getText();
+        return actItemAddedToBasketText;
     }
 }

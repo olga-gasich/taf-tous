@@ -1,31 +1,9 @@
 package ui.tests;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import ui.pages.SearchPage;
-import ui.steps.SearchStep;
 
-public class SearchTest {
-
-    ChromeDriver driver;
-    SearchPage page;
-    SearchStep step;
-
-    @BeforeEach
-    public void warmUp() {
-
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(chromeOptions);
-        driver.manage().window().maximize();
-        step = new SearchStep(driver);
-        page = new SearchPage(driver);
-        page.openBaseURL();
-    }
+public class SearchTest extends BaseSearchTest {
 
     @Test
     public void testSearchForRings() {
@@ -53,10 +31,5 @@ public class SearchTest {
 
         step.fillSearchFieldAndSubmit("$$$$$$$$$$$$");
         Assertions.assertEquals(". Por favor, prueba de nuevo con otras palabras.", page.getNoFoundResultsMessage());
-    }
-
-    @AfterEach
-    public void tearDown() {
-        driver.quit();
     }
 }

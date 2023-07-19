@@ -1,15 +1,16 @@
 package ui.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ui.driver.DriverSingleton;
 import java.time.Duration;
 
 public class LoginPage {
 
-    private ChromeDriver driver;
+    private WebDriver driver;
     private String emailInputLocator = "//*[@id='email-input']";
     private String pwdInputLocator = "//*[@id='password-input']";
     private String rememberPwdCheckboxLocator = "//*[@id='checkbox-inputgroup']/div/div/label";
@@ -19,12 +20,13 @@ public class LoginPage {
     private String pwdErrorLocator = "//div[@class='position-relative sm']/../div[@class='d-block invalid-feedback']/span[text()='La combinación de usuario y contraseña no es correcta']";
     private String welcomeMessageLocator = "//*[@id='__layout']/div/div[3]/div[1]/div/h2/span[1]";
     private String acceptCookieBtnLocator = "//*[@id='cookie-disclaimer']/div/div[1]/div[3]/div/button/div[2]/span";
+    private String promotionCloseBtnLocator = "//*[@id='newsletter-modal___BV_modal_body_']/div/div[1]/button/div[2]/div";
     private String baseURL = "https://www.tous.com/es-es/register";
 
 
-    public LoginPage (ChromeDriver driver){
+    public LoginPage (){
 
-        this.driver = driver;
+        this.driver = DriverSingleton.getDriver();
     }
 
     public void openBaseURL() {
@@ -37,6 +39,13 @@ public class LoginPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement acceptCookieBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(acceptCookieBtnLocator)));
         acceptCookieBtn.click();
+    }
+
+    public void clickPromotionCloseBtn(){
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement promotionCloseBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(promotionCloseBtnLocator)));
+        promotionCloseBtn.click();
     }
 
     public LoginPage fillEmailInput(String str){

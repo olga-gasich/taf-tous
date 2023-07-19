@@ -1,24 +1,21 @@
 package ui.steps;
 
-import org.openqa.selenium.chrome.ChromeDriver;
 import ui.pages.SearchPage;
 
 public class SearchStep {
 
     SearchPage page;
-    private ChromeDriver driver;
 
-    public SearchStep(ChromeDriver driver){
+    public SearchStep(){
 
-        this.driver = driver;
-        page = new SearchPage(driver);
+        page = new SearchPage();
     }
 
     public void fillSearchFieldAndSubmit(String item){
 
-        page = new SearchPage(driver);
         page.openBaseURL();
         page.clickAcceptCookieBtn();
+        page.clickPromotionCloseBtn();
         page.clickSearchIcon()
                 .fillSearchInput(item);
     }
