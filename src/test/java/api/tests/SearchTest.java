@@ -15,8 +15,9 @@ public class SearchTest {
         HashMap<String, String> queryParams = object.getQueryParams("anillos");
 
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
-                .then().assertThat().statusCode(200).
-                assertThat().body(containsString("Anillo"));
+                .then().assertThat()
+                .statusCode(200)
+                .body("content.docs[0].name",equalTo("Anillo bicolor Virtual Garden"));
     }
 
     @Test
@@ -26,8 +27,9 @@ public class SearchTest {
         HashMap<String, String> queryParams = object.getQueryParams("anillos+y+pulseras");
 
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
-                .then().assertThat().statusCode(200).
-                assertThat().body(containsString("Pulsera"));
+                .then().assertThat()
+                .statusCode(200)
+                .body("content.docs[0].name",equalTo("Pulsera de perlas y oro Hold"));
     }
 
     @Test
@@ -37,9 +39,9 @@ public class SearchTest {
         HashMap<String, String> queryParams = object.getQueryParams("Saca+mediana+blanco+y+negro");
 
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
-                .then().assertThat().statusCode(200).
-                assertThat().body("content.docs[0].name",equalTo("Saca mediana blanco y negro TOUS Cloud Soft")).
-                assertThat().body("content.numFound",equalTo(1));
+                .then().assertThat().statusCode(200)
+                .assertThat().body("content.docs[0].name",equalTo("Saca mediana blanco y negro TOUS Cloud Soft"))
+                .assertThat().body("content.numFound",equalTo(1));
     }
 
     @Test
@@ -49,20 +51,21 @@ public class SearchTest {
         HashMap<String, String> queryParams = object.getQueryParams("1q@#$%^&*()_+=");
 
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
-                .then().assertThat().statusCode(200).
-                assertThat().body(not(containsString("1q@#$%^&*()_+=")));
+                .then().assertThat()
+                .statusCode(200)
+                .assertThat().body("content.numFound",equalTo(0));
     }
 
     @Test
     public void testSearchForNotExistingItem(){
 
         SearchPage object = new SearchPage();
-        HashMap<String, String> queryParams = object.getQueryParams("sofa Ikea");
+        HashMap<String, String> queryParams = object.getQueryParams("table Ikea");
 
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
-                .then().assertThat().statusCode(200).
-                assertThat().body(not(containsString("sofa Ikea"))).
-                assertThat().body("content.numFound",equalTo(0));
+                .then().assertThat()
+                .statusCode(200)
+                .assertThat().body("content.numFound",equalTo(0));
     }
 
     @Test
@@ -72,7 +75,8 @@ public class SearchTest {
         HashMap<String, String> queryParams = object.getQueryParams("");
 
         given().when().queryParams(queryParams).get("https://api.empathybroker.com/search/v1/query/tous/searchX")
-                .then().assertThat().statusCode(400).
-                assertThat().body(containsString("q is mandatory"));
+                .then().assertThat()
+                .statusCode(400)
+                .assertThat().body("code",equalTo(400)).body("error",equalTo("q is mandatory"));
     }
 }
