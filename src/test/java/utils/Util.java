@@ -9,17 +9,17 @@ public class Util {
     private static String validPassword = "Pwd1122334455";
 
 
-    public Util(Faker faker){
+    public Util(Faker faker) {
         this.faker = faker;
     }
 
-    public static String generateFakeEmail(){
+    public static String generateFakeEmail() {
         faker = new Faker();
         String fakeEmail = faker.internet().emailAddress();
         return fakeEmail;
     }
 
-    public static String generateFakePassword(){
+    public static String generateFakePassword() {
         faker = new Faker();
         String fakePassword = faker.internet().password();
         return fakePassword;

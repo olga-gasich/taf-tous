@@ -8,11 +8,12 @@ public class DriverSingleton {
 
     private static WebDriver driver;
 
-    private DriverSingleton(){}
+    private DriverSingleton() {
+    }
 
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
 
-        if(driver==null){
+        if (driver == null) {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("--remote-allow-origins=*");
             driver = new ChromeDriver(chromeOptions);
@@ -21,10 +22,10 @@ public class DriverSingleton {
         return driver;
     }
 
-    public static void quit(){
-        if(driver!=null){
-           driver.quit();
-           driver = null;
+    public static void quit() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
         }
     }
 }
