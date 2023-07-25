@@ -6,17 +6,17 @@ public class SearchStep {
 
     SearchPage page;
 
-    public SearchStep(){
+    public SearchStep() {
 
         page = new SearchPage();
     }
 
-    public void fillSearchFieldAndSubmit(String item){
+    public void fillSearchFieldAndSubmit(String item) {
 
-        page.openBaseURL();
-        page.clickAcceptCookieBtn();
-        page.clickPromotionCloseBtn();
-        page.clickSearchIcon()
+        page.openBaseURL()
+                .clickAcceptCookieBtn()
+                .clickPromotionCloseBtn()
+                .clickSearchIcon()
                 .fillSearchInput(item);
     }
 }

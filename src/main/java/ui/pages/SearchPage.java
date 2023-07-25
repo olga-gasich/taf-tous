@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.driver.DriverSingleton;
+
 import java.time.Duration;
 
 public class SearchPage {
@@ -21,38 +22,41 @@ public class SearchPage {
     private String promotionCloseBtnLocator = "//*[@id='newsletter-modal___BV_modal_body_']/div/div[1]/button/div[2]/div";
     private String baseURL = "https://www.tous.com/es-es/register";
 
-    public SearchPage (){
+    public SearchPage() {
 
         this.driver = DriverSingleton.getDriver();
     }
 
-    public void openBaseURL() {
+    public SearchPage openBaseURL() {
 
         driver.get(baseURL);
+        return this;
     }
 
-    public void clickAcceptCookieBtn(){
+    public SearchPage clickAcceptCookieBtn() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement acceptCookieBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(acceptCookieBtnLocator)));
         acceptCookieBtn.click();
+        return this;
     }
 
-    public void clickPromotionCloseBtn(){
+    public SearchPage clickPromotionCloseBtn() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement promotionCloseBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(promotionCloseBtnLocator)));
         promotionCloseBtn.click();
+        return this;
     }
 
-    public SearchPage clickSearchIcon(){
+    public SearchPage clickSearchIcon() {
 
         WebElement searchIcon = driver.findElement(By.xpath(searchIconLocator));
         searchIcon.click();
         return this;
     }
 
-    public SearchPage fillSearchInput(String str){
+    public SearchPage fillSearchInput(String str) {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement searchInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(searchInputLocator)));
@@ -60,7 +64,7 @@ public class SearchPage {
         return this;
     }
 
-    public String getRings(){
+    public String getRings() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement actRingItem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ringItemLocator)));
@@ -68,7 +72,7 @@ public class SearchPage {
         return actRingName;
     }
 
-    public String getRingsAndBracelets(){
+    public String getRingsAndBracelets() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement actBraceletItem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(braceletItemLocator)));
@@ -76,7 +80,7 @@ public class SearchPage {
         return actBraceletName;
     }
 
-    public String getSpecificBag(){
+    public String getSpecificBag() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement actBagItem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(bagItemLocator)));
@@ -84,7 +88,7 @@ public class SearchPage {
         return actBagName;
     }
 
-    public String getNoFoundResultsMessage(){
+    public String getNoFoundResultsMessage() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement actNoFoundResultMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(noFoundResultMessageLocator)));
