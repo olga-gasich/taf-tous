@@ -26,7 +26,6 @@ public class BasketStep {
 
         page.clickSearchIcon()
                 .fillSearchInput(item);
-        page.getFoundEarrings();
     }
 
     public void addToBasket(){

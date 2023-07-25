@@ -92,17 +92,10 @@ public class BasketPage {
         return this;
     }
 
-    public String getFoundEarrings(){
+    public BasketPage clickFoundEarrings(){
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement actEarringsItem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(earringsItemLocator)));
-        String actEarringsItemText = actEarringsItem.getText();
-        return actEarringsItemText;
-    }
-
-    public BasketPage clickFoundEarrings(){
-
-        WebElement actEarringsItem = driver.findElement(By.xpath(earringsItemLocator));
         actEarringsItem.click();
         return this;
     }
