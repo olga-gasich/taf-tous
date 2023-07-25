@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.driver.DriverSingleton;
+
 import java.time.Duration;
 
 public class LoginPage {
@@ -24,73 +25,76 @@ public class LoginPage {
     private String baseURL = "https://www.tous.com/es-es/register";
 
 
-    public LoginPage (){
+    public LoginPage() {
 
         this.driver = DriverSingleton.getDriver();
     }
 
-    public void openBaseURL() {
+    public LoginPage openBaseURL() {
 
         driver.get(baseURL);
+        return this;
     }
 
-    public void clickAcceptCookieBtn(){
+    public LoginPage clickAcceptCookieBtn() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement acceptCookieBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(acceptCookieBtnLocator)));
         acceptCookieBtn.click();
+        return this;
     }
 
-    public void clickPromotionCloseBtn(){
+    public LoginPage clickPromotionCloseBtn() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement promotionCloseBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(promotionCloseBtnLocator)));
         promotionCloseBtn.click();
+        return this;
     }
 
-    public LoginPage fillEmailInput(String str){
+    public LoginPage fillEmailInput(String str) {
 
         WebElement emailInput = driver.findElement(By.xpath(emailInputLocator));
         emailInput.sendKeys(str);
         return this;
     }
 
-    public LoginPage fillPwdInput(String str){
+    public LoginPage fillPwdInput(String str) {
 
         WebElement pwdInput = driver.findElement(By.xpath(pwdInputLocator));
         pwdInput.sendKeys(str);
         return this;
     }
 
-    public LoginPage clickRememberPwdCheckbox(){
+    public LoginPage clickRememberPwdCheckbox() {
 
         WebElement rememberPwdCheckbox = driver.findElement(By.xpath(rememberPwdCheckboxLocator));
         rememberPwdCheckbox.click();
         return this;
     }
 
-    public LoginPage clickSubmitBtn(){
+    public LoginPage clickSubmitBtn() {
 
         WebElement submitBtn = driver.findElement(By.xpath(submitBtnLocator));
         submitBtn.click();
         return this;
     }
 
-    public String getEmptyEmailError(){
+    public String getEmptyEmailError() {
 
         WebElement actEmptyEmailError = driver.findElement(By.xpath(emptyEmailErrorLocator));
         String actEmptyEmailErrorMessage = actEmptyEmailError.getText();
         return actEmptyEmailErrorMessage;
     }
 
-    public String getInvalidEmailError(){
+    public String getInvalidEmailError() {
 
         WebElement actInvalidEmailError = driver.findElement(By.xpath(invalidEmailErrorLocator));
         String actInvalidEmailErrorMessage = actInvalidEmailError.getText();
         return actInvalidEmailErrorMessage;
     }
 
-    public String getPwdError(){
+    public String getPwdError() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement actPwdError = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(pwdErrorLocator)));
@@ -98,7 +102,7 @@ public class LoginPage {
         return actPwdErrorMessage;
     }
 
-    public String getWelcomeMessage(){
+    public String getWelcomeMessage() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement actWelcomeMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(welcomeMessageLocator)));

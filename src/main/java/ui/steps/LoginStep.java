@@ -6,17 +6,17 @@ public class LoginStep {
 
     LoginPage page;
 
-    public LoginStep(){
+    public LoginStep() {
 
         page = new LoginPage();
     }
 
-    public void fillLoginFormAndSubmit(String email, String password){
+    public void fillLoginFormAndSubmit(String email, String password) {
 
-        page.openBaseURL();
-        page.clickAcceptCookieBtn();
-        page.clickPromotionCloseBtn();
-        page.fillEmailInput(email)
+        page.openBaseURL()
+                .clickAcceptCookieBtn()
+                .clickPromotionCloseBtn()
+                .fillEmailInput(email)
                 .fillPwdInput(password)
                 .clickRememberPwdCheckbox()
                 .clickSubmitBtn();
