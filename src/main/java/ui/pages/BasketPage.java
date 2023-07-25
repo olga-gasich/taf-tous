@@ -107,7 +107,7 @@ public class BasketPage {
     public BasketPage clickAddToBasketBtn() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        WebElement addToBasketBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(addToBasketBtnLocator)));
+        WebElement addToBasketBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(addToBasketBtnLocator)));
         addToBasketBtn.click();
         return this;
     }
