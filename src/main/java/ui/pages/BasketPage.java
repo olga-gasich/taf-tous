@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.driver.DriverSingleton;
+
 import java.time.Duration;
 
 public class BasketPage {
@@ -25,66 +26,69 @@ public class BasketPage {
     private String promotionCloseBtnLocator = "//*[@id='newsletter-modal___BV_modal_body_']/div/div[1]/button/div[2]/div";
     private String baseURL = "https://www.tous.com/es-es/register";
 
-    public BasketPage (){
+    public BasketPage() {
 
         this.driver = DriverSingleton.getDriver();
     }
 
-    public void openBaseURL() {
+    public BasketPage openBaseURL() {
 
         driver.get(baseURL);
+        return this;
     }
 
-    public void clickAcceptCookieBtn(){
+    public BasketPage clickAcceptCookieBtn() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement acceptCookieBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(acceptCookieBtnLocator)));
         acceptCookieBtn.click();
+        return this;
     }
 
-    public void clickPromotionCloseBtn(){
+    public BasketPage clickPromotionCloseBtn() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement promotionCloseBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(promotionCloseBtnLocator)));
         promotionCloseBtn.click();
+        return this;
     }
 
-    public BasketPage fillEmailInput(String str){
+    public BasketPage fillEmailInput(String str) {
 
         WebElement emailInput = driver.findElement(By.xpath(emailInputLocator));
         emailInput.sendKeys(str);
         return this;
     }
 
-    public BasketPage fillPwdInput(String str){
+    public BasketPage fillPwdInput(String str) {
 
         WebElement pwdInput = driver.findElement(By.xpath(pwdInputLocator));
         pwdInput.sendKeys(str);
         return this;
     }
 
-    public BasketPage clickRememberPwdCheckbox(){
+    public BasketPage clickRememberPwdCheckbox() {
 
         WebElement rememberPwdCheckbox = driver.findElement(By.xpath(rememberPwdCheckboxLocator));
         rememberPwdCheckbox.click();
         return this;
     }
 
-    public BasketPage clickSubmitBtn(){
+    public BasketPage clickSubmitBtn() {
 
         WebElement submitBtn = driver.findElement(By.xpath(submitBtnLocator));
         submitBtn.click();
         return this;
     }
 
-    public BasketPage clickSearchIcon(){
+    public BasketPage clickSearchIcon() {
 
         WebElement searchIcon = driver.findElement(By.xpath(searchIconLocator));
         searchIcon.click();
         return this;
     }
 
-    public BasketPage fillSearchInput(String str){
+    public BasketPage fillSearchInput(String str) {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement searchInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(searchInputLocator)));
@@ -92,29 +96,31 @@ public class BasketPage {
         return this;
     }
 
-    public BasketPage clickFoundEarrings(){
+    public BasketPage clickFoundEarrings() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         WebElement actEarringsItem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(earringsItemLocator)));
         actEarringsItem.click();
         return this;
     }
 
-    public void clickAddToBasketBtn(){
+    public BasketPage clickAddToBasketBtn() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         WebElement addToBasketBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(addToBasketBtnLocator)));
         addToBasketBtn.click();
+        return this;
     }
 
-    public void clickPopUpBtn(){
+    public BasketPage clickPopUpBtn() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         WebElement PopUpBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PopUpBtnLocator)));
         PopUpBtn.click();
+        return this;
     }
 
-    public String getItemAddedToBasket(){
+    public String getItemAddedToBasket() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement actItemAddedToBasket = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(itemAddedToBasketLocator)));
