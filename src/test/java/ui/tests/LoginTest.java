@@ -2,7 +2,6 @@ package ui.tests;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import utils.Util;
 
 public class LoginTest extends BaseLoginTest {
 
