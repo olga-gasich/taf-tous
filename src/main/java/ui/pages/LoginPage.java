@@ -38,7 +38,7 @@ public class LoginPage {
 
     public LoginPage clickAcceptCookieBtn() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement acceptCookieBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(acceptCookieBtnLocator)));
         acceptCookieBtn.click();
         return this;
@@ -46,7 +46,7 @@ public class LoginPage {
 
     public LoginPage clickPromotionCloseBtn() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement promotionCloseBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(promotionCloseBtnLocator)));
         promotionCloseBtn.click();
         return this;
@@ -96,7 +96,7 @@ public class LoginPage {
 
     public String getPwdError() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement actPwdError = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(pwdErrorLocator)));
         String actPwdErrorMessage = actPwdError.getText();
         return actPwdErrorMessage;
@@ -104,7 +104,7 @@ public class LoginPage {
 
     public String getWelcomeMessage() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement actWelcomeMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(welcomeMessageLocator)));
         String actWelcomeMessageText = actWelcomeMessage.getText();
         return actWelcomeMessageText;

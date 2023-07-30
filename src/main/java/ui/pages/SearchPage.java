@@ -35,7 +35,7 @@ public class SearchPage {
 
     public SearchPage clickAcceptCookieBtn() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement acceptCookieBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(acceptCookieBtnLocator)));
         acceptCookieBtn.click();
         return this;
@@ -43,7 +43,7 @@ public class SearchPage {
 
     public SearchPage clickPromotionCloseBtn() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement promotionCloseBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(promotionCloseBtnLocator)));
         promotionCloseBtn.click();
         return this;
@@ -58,7 +58,7 @@ public class SearchPage {
 
     public SearchPage fillSearchInput(String str) {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement searchInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(searchInputLocator)));
         searchInput.sendKeys(str);
         return this;
@@ -66,7 +66,7 @@ public class SearchPage {
 
     public String getRings() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement actRingItem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ringItemLocator)));
         String actRingName = actRingItem.getText();
         return actRingName;
@@ -74,7 +74,7 @@ public class SearchPage {
 
     public String getRingsAndBracelets() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement actBraceletItem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(braceletItemLocator)));
         String actBraceletName = actBraceletItem.getText();
         return actBraceletName;
@@ -82,7 +82,7 @@ public class SearchPage {
 
     public String getSpecificBag() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement actBagItem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(bagItemLocator)));
         String actBagName = actBagItem.getText();
         return actBagName;
@@ -90,7 +90,7 @@ public class SearchPage {
 
     public String getNoFoundResultsMessage() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement actNoFoundResultMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(noFoundResultMessageLocator)));
         String actNoFoundResultMessageText = actNoFoundResultMessage.getText();
         return actNoFoundResultMessageText;

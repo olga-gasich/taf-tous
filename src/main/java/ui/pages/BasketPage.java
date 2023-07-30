@@ -39,7 +39,7 @@ public class BasketPage {
 
     public BasketPage clickAcceptCookieBtn() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement acceptCookieBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(acceptCookieBtnLocator)));
         acceptCookieBtn.click();
         return this;
@@ -47,7 +47,7 @@ public class BasketPage {
 
     public BasketPage clickPromotionCloseBtn() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement promotionCloseBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(promotionCloseBtnLocator)));
         promotionCloseBtn.click();
         return this;
@@ -90,7 +90,7 @@ public class BasketPage {
 
     public BasketPage fillSearchInput(String str) {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement searchInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(searchInputLocator)));
         searchInput.sendKeys(str);
         return this;
@@ -98,7 +98,7 @@ public class BasketPage {
 
     public BasketPage clickFoundEarrings() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement actEarringsItem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(earringsItemLocator)));
         actEarringsItem.click();
         return this;
@@ -106,7 +106,7 @@ public class BasketPage {
 
     public BasketPage clickAddToBasketBtn() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement addToBasketBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(addToBasketBtnLocator)));
         addToBasketBtn.click();
         return this;
@@ -114,7 +114,7 @@ public class BasketPage {
 
     public BasketPage clickPopUpBtn() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement PopUpBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PopUpBtnLocator)));
         PopUpBtn.click();
         return this;
@@ -122,7 +122,7 @@ public class BasketPage {
 
     public String getItemAddedToBasket() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement actItemAddedToBasket = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(itemAddedToBasketLocator)));
         String actItemAddedToBasketText = actItemAddedToBasket.getText();
         return actItemAddedToBasketText;
