@@ -1,6 +1,6 @@
 # taf-tous
 
-Website selling jewelry in Spanish, its url https://www.tous.com/.
+Website selling jewelry in Spanish, its is url https://www.tous.com/.
 
 # Overview
 
