@@ -4,7 +4,7 @@ Website selling jewelry in Spanish, its url https://www.tous.com/.
 
 # Overview
 
-The test framework is designed to facilitate automated testing of the tous marketplace. 
+The test framework is designed to facilitate automated testing of the tous site. 
 It provides a set of tools and utilities to create and run tests, generate test reports, and manage test data.
 The framework is based on Page object model and uses DriverSingleton design pattern which ensures its scalability and further support.
 
