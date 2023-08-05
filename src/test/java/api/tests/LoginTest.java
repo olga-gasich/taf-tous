@@ -2,9 +2,7 @@ package api.tests;
 
 import api.LoginPage;
 import org.junit.jupiter.api.Test;
-
 import java.util.HashMap;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
